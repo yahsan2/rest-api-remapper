@@ -1,0 +1,59 @@
+{
+  "name": "rest-api-remapping",
+  "version": "0.1.0",
+  "description": "nuxt module for mapping uri and response props of rest api",
+  "main": "dist/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "release": "standard-version",
+    "release-minor": "yarn release -- --release-as minor",
+    "release-major": "yarn release -- --release-as major"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/yahsan2/nuxt-module-api-mapper.git"
+  },
+  "keywords": [
+    "nuxt",
+    "rest-api",
+    "api-wrapper"
+  ],
+  "author": "Ryosuke Miyamoto <yahsan2@gmail.com> (https://github.com/yahsan2)",
+  "bugs": {
+    "url": "https://github.com/yahsan2/nuxt-module-api-mapper/issues"
+  },
+  "homepage": "https://github.com/yahsan2/nuxt-module-api-mapper#readme",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "standard-version": "^6.0.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "moduleNameMapper": {
+      "^~/(.+)": "<rootDir>/src/$1"
+    },
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/src/**/*.test.ts"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.7",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.1"
+  }
+}
