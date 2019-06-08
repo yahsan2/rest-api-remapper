@@ -1,94 +1,126 @@
 [
-    {
-        "id": 1,
-        "date": "2019-06-07T08:00:33",
-        "date_gmt": "2019-06-06T23:00:33",
-        "slug": "hello-world",
-        "status": "publish",
-        "title": {
-            "rendered": "title001"
-        },
-        "content": {
-            "rendered": "content001"
-        },
-        "categories": [1, 2],
-        "_embedded": {
-            "wp:featuredmedia": [{
-                "id": 11,
-                "date": "2019-06-05T10:55:02",
-                "type": "attachment",
-                "title": {
-                    "rendered": "attachment-title"
-                },
-                "media_details": {
-                    "width": 2500,
-                    "height": 1667,
-                    "file": "file-11.jpg",
-                    "sizes": {
-                        "medium": {
-                            "file": "file-11.jpg",
-                            "width": 720,
-                            "height": 480,
-                            "mime_type": "image/jpeg",
-                            "source_url": "path/to/file-11.jpg"
-                        },
-                        "full": {
-                            "file": "file-11.jpg",
-                            "width": 2500,
-                            "height": 1667,
-                            "mime_type": "image/jpeg",
-                            "source_url": "path/to/file-11.jpg"
-                        }
-                    },
-                    "source_url": "path/to/file-11.jpg"
-                }
-            }]
-        }
+  {
+    "id": 1,
+    "date": "2019-06-07T08:00:33",
+    "date_gmt": "2019-06-06T23:00:33",
+    "slug": "hello-world",
+    "status": "publish",
+    "title": {
+      "rendered": "title001"
     },
-    {
-        "id": 2,
-        "date": "2019-06-07T08:00:33",
-        "date_gmt": "2019-06-07T23:00:33",
-        "slug": "hi-world",
-        "status": "publish",
-        "title": {
-            "rendered": "title002"
+    "content": {
+      "rendered": "content001"
+    },
+    "categories": [1, 2],
+    "_embedded": {
+      "wp:term": [
+        {
+          "id": 1,
+          "name": "カテゴリ-001",
+          "slug": "category001",
+          "taxonomy": "category"
         },
-        "content": {
-            "rendered": "content002"
-        },
-        "categories": [2, 3],
-        "_embedded": {
-            "wp:featuredmedia": [{
-                "id": 12,
-                "date": "2019-06-05T10:55:02",
-                "type": "attachment",
-                "title": {
-                    "rendered": "attachment-title"
-                },
-                "media_details": {
-                    "width": 2500,
-                    "height": 1667,
-                    "file": "file-12.jpg",
-                    "sizes": {
-                        "medium": {
-                            "file": "file-12.jpg",
-                            "width": 720,
-                            "height": 480,
-                            "mime_type": "image/jpeg",
-                            "source_url": "path/to/file-12.jpg"
-                        },
-                        "full": {
-                            "file": "file-12.jpg",
-                            "width": 2500,
-                            "height": 1667,
-                            "mime_type": "image/jpeg",
-                            "source_url": "path/to/file-12.jpg"
-                        }
-                    },
-                    "source_url": "path/to/file-12.jpg"
-                }
-            }]
+        {
+          "id": 2,
+          "name": "カテゴリ-002",
+          "slug": "category002",
+          "taxonomy": "category"
         }
+      ],
+      "wp:featuredmedia": [
+        {
+          "id": 11,
+          "date": "2019-06-05T10:55:02",
+          "type": "attachment",
+          "title": {
+            "rendered": "attachment-title11"
+          },
+          "media_details": {
+            "width": 2500,
+            "height": 1667,
+            "file": "file-11.jpg",
+            "sizes": {
+              "medium": {
+                "file": "file-11.jpg",
+                "width": 720,
+                "height": 480,
+                "mime_type": "image/jpeg",
+                "source_url": "path/to/file-11.jpg"
+              },
+              "full": {
+                "file": "file-11.jpg",
+                "width": 2500,
+                "height": 1667,
+                "mime_type": "image/jpeg",
+                "source_url": "path/to/file-11.jpg"
+              }
+            }
+          },
+          "source_url": "path/to/file-11.jpg"
+        }
+      ]
     }
+  },
+  {
+    "id": 2,
+    "date": "2019-06-07T08:00:33",
+    "date_gmt": "2019-06-07T23:00:33",
+    "slug": "hi-world",
+    "status": "publish",
+    "title": {
+      "rendered": "title002"
+    },
+    "content": {
+      "rendered": "content002"
+    },
+    "categories": [2, 3],
+    "_embedded": {
+      "wp:term": [
+        {
+          "id": 2,
+          "name": "カテゴリ-002",
+          "slug": "category002",
+          "taxonomy": "category"
+        },
+        {
+          "id": 3,
+          "name": "カテゴリ-003",
+          "slug": "category003",
+          "taxonomy": "category"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "id": 12,
+          "date": "2019-06-05T10:55:02",
+          "type": "attachment",
+          "title": {
+            "rendered": "attachment-title12"
+          },
+          "media_details": {
+            "width": 2500,
+            "height": 1667,
+            "file": "file-12.jpg",
+            "sizes": {
+              "medium": {
+                "file": "file-12.jpg",
+                "width": 720,
+                "height": 480,
+                "mime_type": "image/jpeg",
+                "source_url": "path/to/file-12.jpg"
+              },
+              "full": {
+                "file": "file-12.jpg",
+                "width": 2500,
+                "height": 1667,
+                "mime_type": "image/jpeg",
+                "source_url": "path/to/file-12.jpg"
+              }
+            }
+          },
+          "source_url": "path/to/file-12.jpg"
+        }
+      ]
+    }
+  }
 ]

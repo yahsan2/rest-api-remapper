@@ -44,7 +44,12 @@ module.exports = {
         id: 'id',
         title: 'title.rendered',
         categories: 'categories',
-        images: {
+        terms: {
+          extends: 'term',
+          base: '_embedded.wp:term'
+        },
+        image: {
+          one: true,
           extends: 'image',
           base: '_embedded.wp:featuredmedia'
         }
@@ -55,20 +60,24 @@ module.exports = {
     },
     term: {
       id: 'id',
-      count: 'count',
       description: 'description',
-      link: 'link',
-      name: 'name',
-      slug: 'slug',
-      parent: 'parent'
+      title: 'name',
+      slug: 'slug'
+    },
+    terms: {
+      base: '_embedded.wp:term',
+      props: {
+        id: 'id',
+        description: 'description',
+        title: 'name',
+        slug: 'slug'
+      }
     },
     image: {
       id: 'id',
       title: 'title.rendered',
-      caption: 'caption.rendered',
-      alt: 'alt_text',
       url: 'source_url',
       sizes: 'media_details.sizes'
     }
   }
-}
+};

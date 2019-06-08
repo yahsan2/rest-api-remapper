@@ -29,46 +29,57 @@ class ApiMapper {
     if (serviceEndpoint.error) {
       return { error: serviceEndpoint.error };
     }
-
     const res = await axios.get(this.baseURI + serviceEndpoint.path, {
       params
     });
-    // res.data = this.mapProparty( res.data, serviceEndpoint.name )
+    res.data = this.mapProparty(res.data, serviceEndpoint.name);
     return res;
   }
 
-  // async post({ endpoint, params }: { endpoint: string; params: object; }): Promise<object> {
-  //   const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({ method: 'post', endpoint })
+  async post({
+    endpoint,
+    params
+  }: {
+    endpoint: string;
+    params: object;
+  }): Promise<object> {
+    const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({
+      method: 'post',
+      endpoint
+    });
+    if (serviceEndpoint.error) {
+      return { error: serviceEndpoint.error };
+    }
+    const res = await axios.post(this.baseURI + serviceEndpoint.path, params);
+    res.data = this.mapProparty(res.data, serviceEndpoint.name);
+    return res;
+  }
 
-  //   if(!serviceEndpoint) return null
-  //   const res = await axios.post( this.baseURI + serviceEndpoint.path, params)
-  //   res.data = this.mapProparty( res.data, serviceEndpoint.name )
-  //   return res;
-  // }
+  async put(endpoint: string, params: object) {
+    const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({
+      method: 'put',
+      endpoint
+    });
+    if (serviceEndpoint.error) {
+      return { error: serviceEndpoint.error };
+    }
+    const res = await axios.put(this.baseURI + serviceEndpoint.path, params);
+    res.data = this.mapProparty(res.data, serviceEndpoint.name);
+    return res;
+  }
 
-  // async put(endpoint: string, params: object){
-  //   const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({ method: 'put', endpoint })
-
-  //   if(!serviceEndpoint) return null
-  //   const res = await axios.put( this.baseURI + serviceEndpoint.path, params)
-  //   res.data = this.mapProparty( res.data, serviceEndpoint.name )
-  //   return res;
-  // }
-
-  // async delete(endpoint: string, params: object){
-  //   const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({ method: 'delete', endpoint })
-
-  //   if(!name) return {
-  //     error: `This method "${method}" or this endpoint "${endpoint}" does'nt be found`
-  //   }
-  //   const res = await axios.delete( this.baseURI + serviceEndpoint.path, params)
-  //   res.data = this.mapProparty( res.data, serviceEndpoint.name )
-  //   return res;
-  // }
-
-  // private getServiceEndpointError(method: string, endpoint: string): string {
-  //   return `This method "${method}" or this endpoint "${endpoint}" does'nt be found`
-  // }
+  async delete(endpoint: string, params: object) {
+    const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({
+      method: 'delete',
+      endpoint
+    });
+    if (serviceEndpoint.error) {
+      return { error: serviceEndpoint.error };
+    }
+    const res = await axios.delete(this.baseURI + serviceEndpoint.path, params);
+    res.data = this.mapProparty(res.data, serviceEndpoint.name);
+    return res;
+  }
 
   public getServiceEndpoint({
     method,
@@ -94,52 +105,55 @@ class ApiMapper {
     };
   }
 
-  // mapProparty(originData, name){
-  //   if(this.propMap && this.propMap[name]){
-  //     const propValue = this.propMap[name] || {}
-  //     const data = this.getMappingData(originData, propValue)
-  //     return data;
-  //   }else{
-  //     return originData
-  //   }
-  // }
+  public mapProparty(originData: object, name: string): object {
+    if (this.propMap && this.propMap[name]) {
+      const propValue = this.propMap[name] || {};
+      const data = this.getMappingData(originData, propValue);
+      return data;
+    } else {
+      return originData;
+    }
+  }
 
-  // getMappingData(originData, propValue){
-  //   const props = this.getProps( propValue )
+  private getMappingData(originData: object, configPropValue: object): object {
+    const configProps: object = this.getProps(configPropValue);
 
-  //   if (originData && propValue['base']) {
-  //     originData = this.getDeepData(originData, propValue['base'])
-  //   }
+    if (originData && configPropValue['base']) {
+      originData = this.getDeepData(originData, configPropValue['base']);
+    }
 
-  //   if(originData && propValue['one']){
-  //     const index = typeof propValue['one'] === 'number' ? propValue['one'] - 1 : 0
-  //     originData = originData[index] || originData[0] || {}
-  //   }
+    if (originData && configPropValue['one']) {
+      const index =
+        typeof configPropValue['one'] === 'number'
+          ? configPropValue['one'] - 1
+          : 0;
+      originData = originData[index] || originData[0] || {};
+    }
 
-  //   if(originData && Array.isArray(originData)){
-  //     const mappingData = []
-  //     originData.forEach((data, i)=>{
-  //       mappingData.push( this.getMappingData(data, propValue) )
-  //     })
-  //     return mappingData;
-  //   }
+    if (originData && Array.isArray(originData)) {
+      const mappingData = [];
+      originData.forEach((data, i) => {
+        mappingData.push(this.getMappingData(data, configProps));
+      });
+      return mappingData;
+    }
 
-  //   return this.mergeProps(originData, props);
-  // }
+    return this.mergeProps(originData, configProps);
+  }
 
-  // getDeepData(data, basePropStr){
-  //   if(!basePropStr || typeof basePropStr !== 'string') return data;
+  private getDeepData(data: object, basePropStr: any): any {
+    if (!basePropStr || typeof basePropStr !== 'string') return null;
 
-  //   const basePropKeys = basePropStr.split('.')
-  //   data = basePropKeys.reduce((d, basePropKey)=>{
-  //     return d && d[ basePropKey ] || null
-  //   }, data)
+    const basePropKeys = basePropStr.split('.');
+    data = basePropKeys.reduce((d, basePropKey) => {
+      return (d && d[basePropKey]) || null;
+    }, data);
 
-  //   return data
-  // }
+    return data;
+  }
 
-  getProps(propValue) {
-    let props = propValue['props'] || propValue || {};
+  private getProps(propValue: any): object {
+    let props: object = propValue['props'] || propValue || {};
 
     if (propValue && propValue['extends']) {
       const extendPropValue = this.propMap[propValue['extends']] || null;
@@ -161,22 +175,22 @@ class ApiMapper {
     return props;
   }
 
-  // hasNestedProps(propValue){
-  //   return propValue['props'] || propValue['extends']
-  // }
+  private hasNestedProps(propValue: object): boolean {
+    return !!(propValue['base'] || propValue['props'] || propValue['extends']);
+  }
 
-  // mergeProps(originData, props){
-  //   const data = {};
-  //   Object.keys(props).forEach((propKey)=>{
-  //     const propValue = props[ propKey ]
-  //     if( this.hasNestedProps( propValue ) ){
-  //       data[ propKey ] = this.getMappingData(originData, propValue)
-  //     }else if(typeof propValue === 'string'){
-  //       data[ propKey ] = this.getDeepData(originData, propValue)
-  //     }
-  //   })
-  //   return data
-  // }
+  private mergeProps(originData: object, configProps: object): object {
+    const data = {};
+    Object.keys(configProps).forEach(configPropKey => {
+      const propValue = configProps[configPropKey];
+      if (this.hasNestedProps(propValue)) {
+        data[configPropKey] = this.getMappingData(originData, propValue);
+      } else if (typeof propValue === 'string') {
+        data[configPropKey] = this.getDeepData(originData, propValue);
+      }
+    });
+    return data;
+  }
 }
 
 export default ApiMapper;
