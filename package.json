@@ -11,9 +11,7 @@
     "lint": "tslint 'src/**/*.ts'",
     "lintfix": "tslint 'src/**/*.ts' --fix",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "release": "standard-version",
-    "release-minor": "yarn release -- --release-as minor",
-    "release-major": "yarn release -- --release-as major"
+    "release": "yarn test && standard-version && git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
