@@ -1,6 +1,6 @@
 {
-  "name": "rest-api-remapping",
-  "version": "0.1.2",
+  "name": "rest-api-remapper",
+  "version": "0.1.3",
   "description": "mapping uri and response props of rest api",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
@@ -18,15 +18,15 @@
     "url": "git+ssh://git@github.com/yahsan2/nuxt-module-api-mapper.git"
   },
   "keywords": [
-    "nuxt",
     "rest-api",
+    "api-mapping",
     "api-wrapper"
   ],
   "author": "Ryosuke Miyamoto <yahsan2@gmail.com> (https://github.com/yahsan2)",
   "bugs": {
-    "url": "https://github.com/yahsan2/rest-api-remapping/issues"
+    "url": "https://github.com/yahsan2/rest-api-remapper/issues"
   },
-  "homepage": "https://github.com/yahsan2/nuxt-module-api-mapper#readme",
+  "homepage": "https://github.com/yahsan2/rest-api-remapper#readme",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
