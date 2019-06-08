@@ -1,6 +1,6 @@
 {
   "name": "rest-api-remapping",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "mapping uri and response props of rest api",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
