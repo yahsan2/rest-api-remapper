@@ -1,11 +1,13 @@
 {
   "name": "rest-api-remapping",
   "version": "0.1.0",
-  "description": "nuxt module for mapping uri and response props of rest api",
+  "description": "mapping uri and response props of rest api",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
   "scripts": {
     "test": "jest",
+    "prepare": "tsc src/*.ts --outDir dist",
+    "build": "tsc src/*.ts --outDir dist",
     "lint": "tslint 'src/**/*.ts'",
     "lintfix": "tslint 'src/**/*.ts' --fix",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
