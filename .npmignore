@@ -1,0 +1,6 @@
+.prettierrc
+.vscode
+tsconfig.json
+tslint.json
+__test__/
+src/
