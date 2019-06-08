@@ -1,5 +1,5 @@
 module.exports = {
-  baseURI: `../`,
+  baseURI: `../data`,
   api: {
     meta: {
       get: {
@@ -8,17 +8,17 @@ module.exports = {
     },
     post: {
       get: {
-        '/posts': `/wp/v2/posts`,
-        '/posts/:id': `/wp/v2/posts`
+        '/posts': `/wp/v2/posts.json`,
+        '/posts/:id': `/wp/v2/posts.json`
       },
       post: {
-        '/posts': `/wp/v2/posts`
+        '/posts': `/wp/v2/posts.json`
       },
       put: {
-        '/posts/:id': `/wp/v2/posts`
+        '/posts/:id': `/wp/v2/posts.json`
       },
       delete: {
-        '/posts/:id': `/wp/v2/posts`
+        '/posts/:id': `/wp/v2/posts.json`
       }
     },
     page: {
