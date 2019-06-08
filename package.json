@@ -24,7 +24,7 @@
   ],
   "author": "Ryosuke Miyamoto <yahsan2@gmail.com> (https://github.com/yahsan2)",
   "bugs": {
-    "url": "https://github.com/yahsan2/nuxt-module-api-mapper/issues"
+    "url": "https://github.com/yahsan2/rest-api-remapping/issues"
   },
   "homepage": "https://github.com/yahsan2/nuxt-module-api-mapper#readme",
   "license": "MIT",
