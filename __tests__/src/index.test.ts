@@ -149,10 +149,7 @@ describe('ApiMapper', (): void => {
 
     it('get() should return post json with normal', async (): Promise<void> => {
       const [endpoint, params]: [string, object] = ['/posts', {}];
-      const res = await apiMapper1.get({
-        endpoint,
-        params
-      });
+      const res = await apiMapper1.get(endpoint, params);
       expect(res['data'][0].id).toBe(1);
       expect(res['data'][1].id).toBe(2);
       expect(res['data'][0].title).toBe('title001');
@@ -167,7 +164,7 @@ describe('ApiMapper', (): void => {
 
     it('get() should return post json with error', async (): Promise<void> => {
       const [endpoint, params]: [string, object] = ['/error-posts-path', {}];
-      const res = await apiMapper1.get({ endpoint, params });
+      const res = await apiMapper1.get(endpoint, params);
       expect(res['data']).toBeUndefined();
       expect(res['error']).toBe(
         `This method "get" or this endpoint "${endpoint}" does'nt be found`

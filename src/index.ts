@@ -15,13 +15,7 @@ class ApiMapper {
     this.reservedWords = ['one', 'base', 'extends', 'props'];
   }
 
-  public async get({
-    endpoint,
-    params
-  }: {
-    endpoint: string;
-    params: object;
-  }): Promise<object> {
+  public async get(endpoint: string, params: object): Promise<object> {
     const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({
       method: 'get',
       endpoint
@@ -36,13 +30,7 @@ class ApiMapper {
     return res;
   }
 
-  async post({
-    endpoint,
-    params
-  }: {
-    endpoint: string;
-    params: object;
-  }): Promise<object> {
+  async post(endpoint: string, params: object): Promise<object> {
     const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({
       method: 'post',
       endpoint
