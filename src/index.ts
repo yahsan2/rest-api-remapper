@@ -29,12 +29,11 @@ class ApiMapper {
     if (serviceEndpoint.error) {
       return { error: serviceEndpoint.error };
     }
-    const paramsSerializer = isParamsSerializer
-      ? params => qs.stringify(params)
-      : params => params;
     const res = await axios.get(this.baseURI + serviceEndpoint.path, {
       params,
-      paramsSerializer
+      paramsSerializer: isParamsSerializer
+        ? params => qs.stringify(params)
+        : params => params
     });
     res.data = this.mapProparty(res.data, serviceEndpoint.name);
     return res;
