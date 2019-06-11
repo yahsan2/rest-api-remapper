@@ -31,7 +31,7 @@ class ApiMapper {
     }
     const paramsSerializer = isParamsSerializer
       ? params => qs.stringify(params)
-      : () => {};
+      : params => params;
     const res = await axios.get(this.baseURI + serviceEndpoint.path, {
       params,
       paramsSerializer
