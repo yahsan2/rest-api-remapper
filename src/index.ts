@@ -1,4 +1,6 @@
 import axios from 'axios';
+import qs from 'qs';
+
 import { Options } from './Options';
 import { ServiceEndpoint } from './ServiceEndpoint';
 
@@ -15,7 +17,11 @@ class ApiMapper {
     this.reservedWords = ['one', 'base', 'extends', 'props'];
   }
 
-  public async get(endpoint: string, params: object): Promise<object> {
+  public async get(
+    endpoint: string,
+    params: object,
+    isParamsSerializer?: Boolean
+  ): Promise<object> {
     const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({
       method: 'get',
       endpoint
@@ -23,8 +29,12 @@ class ApiMapper {
     if (serviceEndpoint.error) {
       return { error: serviceEndpoint.error };
     }
+    const paramsSerializer = isParamsSerializer
+      ? params => qs.stringify(params)
+      : () => {};
     const res = await axios.get(this.baseURI + serviceEndpoint.path, {
-      params
+      params,
+      paramsSerializer
     });
     res.data = this.mapProparty(res.data, serviceEndpoint.name);
     return res;
