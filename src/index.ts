@@ -20,7 +20,7 @@ class ApiMapper {
   public async get(
     endpoint: string,
     params: object,
-    isParamsSerializer?: Boolean
+    paramsSerializer?: object
   ): Promise<object> {
     const serviceEndpoint: ServiceEndpoint = this.getServiceEndpoint({
       method: 'get',
@@ -29,12 +29,11 @@ class ApiMapper {
     if (serviceEndpoint.error) {
       return { error: serviceEndpoint.error };
     }
-    const res = await axios.get(this.baseURI + serviceEndpoint.path, {
-      params,
-      paramsSerializer: isParamsSerializer
-        ? params => qs.stringify(params)
-        : params => params
-    });
+    const options = { params };
+    if (paramsSerializer) {
+      options['paramsSerializer'] = paramsSerializer;
+    }
+    const res = await axios.get(this.baseURI + serviceEndpoint.path, options);
     res.data = this.mapProparty(res.data, serviceEndpoint.name);
     return res;
   }
