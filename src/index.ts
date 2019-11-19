@@ -134,7 +134,7 @@ class ApiMapper {
       return mappingData;
     }
 
-    return this.mergeProps(originData, configProps);
+    return originData ? this.mergeProps(originData, configProps) : originData;
   }
 
   private getDeepData(data: object, basePropStr: any): any {
