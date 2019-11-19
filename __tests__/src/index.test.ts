@@ -114,9 +114,14 @@ describe('ApiMapper', (): void => {
           postData[0],
           option1.map['post']
         );
+        const termsConfigProps1 = (apiMapper1 as any).getMappingData(
+          postData[1],
+          option1.map['post']
+        );
         expect(termsConfigProps.id).toBe(1);
         expect(termsConfigProps.title).toBe('title001');
         expect(termsConfigProps.image.title).toBe('attachment-title11');
+        expect(termsConfigProps1.image).toBe(null);
         // expect(termsConfigProps.terms[0]).toBe('カテゴリ-001');
         expect(termsConfigProps.terms[0].title).toBe('カテゴリ-001');
         expect(termsConfigProps.terms[1].title).toBe('カテゴリ-002');
@@ -154,6 +159,8 @@ describe('ApiMapper', (): void => {
       expect(res['data'][1].id).toBe(2);
       expect(res['data'][0].title).toBe('title001');
       expect(res['data'][0].image.title).toBe('attachment-title11');
+      expect(res['data'][0].image.sizes.medium.width).toBe(720);
+      expect(res['data'][1].image).toBe(null);
       expect(res['data'][0].categories).toStrictEqual([1, 2]);
       expect(res['data'][1].categories).toStrictEqual([2, 3]);
       expect(res['data'][0].terms[0].title).toBe('カテゴリ-001');

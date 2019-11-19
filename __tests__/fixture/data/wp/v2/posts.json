@@ -89,38 +89,7 @@
           "taxonomy": "category"
         }
       ],
-      "wp:featuredmedia": [
-        {
-          "id": 12,
-          "date": "2019-06-05T10:55:02",
-          "type": "attachment",
-          "title": {
-            "rendered": "attachment-title12"
-          },
-          "media_details": {
-            "width": 2500,
-            "height": 1667,
-            "file": "file-12.jpg",
-            "sizes": {
-              "medium": {
-                "file": "file-12.jpg",
-                "width": 720,
-                "height": 480,
-                "mime_type": "image/jpeg",
-                "source_url": "path/to/file-12.jpg"
-              },
-              "full": {
-                "file": "file-12.jpg",
-                "width": 2500,
-                "height": 1667,
-                "mime_type": "image/jpeg",
-                "source_url": "path/to/file-12.jpg"
-              }
-            }
-          },
-          "source_url": "path/to/file-12.jpg"
-        }
-      ]
+      "wp:featuredmedia": null
     }
   }
 ]
